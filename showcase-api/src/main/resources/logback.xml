@@ -5,7 +5,7 @@
 		</encoder>
 	</appender>
 	
-	<logger name="com.XXX.XXX" level="DEBUG" additivity="false">
+	<logger name="com.plymouth.comp2001.showcase" level="DEBUG" additivity="false">
 		<appender-ref ref="CONSOLE" />
 	</logger>
 	
