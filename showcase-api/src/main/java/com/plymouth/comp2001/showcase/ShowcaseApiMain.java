@@ -9,6 +9,6 @@ public class ShowcaseApiMain
 	
     public static void main( String[] args )
     {
-        System.out.println( "init project.." );
+    	logger.info("Showcase API is stating...");
     }
 }
