@@ -1,0 +1,20 @@
+create trigger tgUpdateProgramme on programme after update as 
+begin
+	set nocount on;
+	insert into audit_programme (
+		// audit_programme_id,
+		create_time,
+		action,
+		code,
+		title
+	)
+	values(
+		// id is auto generated
+		current_timestamp,
+		'update',
+		(select code from deleted),
+		(select title from deleted),
+	);
+
+	print 'tgUpdateProgramme is fired!'
+end

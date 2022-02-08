@@ -39,9 +39,9 @@ public class ProjectController
 	public Project add()
 	{
 		Project project = new Project();
-//		project.setProjectName("Biohazard 3");
-//		project.setProjectName("Dino Crisis 2");
-		project.setProjectName("Devil May Cry 4");
+//		project.setTitle("Biohazard 3");
+//		project.setTitle("Dino Crisis 2");
+		project.setTitle("Devil May Cry 4");
 		project = projectRepository.save(project);
 		return project;
 	}
@@ -64,7 +64,7 @@ public class ProjectController
 
 		Optional<Project> optional = projectRepository.findById(projectId);
 		Project dbProject = optional.orElse(null);
-		dbProject.setProjectName(project.getProjectName());
+		dbProject.setTitle(project.getTitle());
 		dbProject = projectRepository.save(dbProject);
 		return dbProject;
 	}

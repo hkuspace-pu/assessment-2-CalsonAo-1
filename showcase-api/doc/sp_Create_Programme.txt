@@ -1,0 +1,10 @@
+create procedure Create_Programme
+	@programmeCode int,
+	@title varchar(50)
+as
+begin
+	if not exists (select * from programme where code = @programmeCode)
+	begin
+		insert into programme (code, title, create_time) values (@programmeCode, @title, CURRENT_TIMESTAMP)
+	end
+end

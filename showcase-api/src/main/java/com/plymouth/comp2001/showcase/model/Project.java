@@ -18,8 +18,19 @@ public class Project
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer projectId;
 	
-	@Column(nullable = false, updatable = true)
-	private String projectName;
+	@Column(nullable = false, updatable = false)
+	private String title;
+	
+	@Column
+	private String description;
+	
+	@Column
+	private Integer year;
+	
+	private String thumbnailImage;
+	
+	private String posterImage;
+	
 	
 	@Column(nullable = false, updatable = false)
 	private LocalDateTime createTime;
@@ -32,10 +43,10 @@ public class Project
 		
 	}
 	
-	public Project(Integer projectId, String projectName)
+	public Project(Integer projectId, String title)
 	{
 		this.projectId = projectId;
-		this.projectName = projectName;
+		this.title = title;
 	}
 	
 	@PrePersist
@@ -49,35 +60,82 @@ public class Project
 	{
 		lastUpdateTime = LocalDateTime.now();
 	}
-	
+
 	public Integer getProjectId()
 	{
 		return projectId;
 	}
+
 	public void setProjectId(Integer projectId)
 	{
 		this.projectId = projectId;
 	}
-	public String getProjectName()
+
+	public String getTitle()
 	{
-		return projectName;
+		return title;
 	}
-	public void setProjectName(String projectName)
+
+	public void setTitle(String title)
 	{
-		this.projectName = projectName;
+		this.title = title;
 	}
+
+	public String getDescription()
+	{
+		return description;
+	}
+
+	public void setDescription(String description)
+	{
+		this.description = description;
+	}
+
+	public Integer getYear()
+	{
+		return year;
+	}
+
+	public void setYear(Integer year)
+	{
+		this.year = year;
+	}
+
+	public String getThumbnailImage()
+	{
+		return thumbnailImage;
+	}
+
+	public void setThumbnailImage(String thumbnailImage)
+	{
+		this.thumbnailImage = thumbnailImage;
+	}
+
+	public String getPosterImage()
+	{
+		return posterImage;
+	}
+
+	public void setPosterImage(String posterImage)
+	{
+		this.posterImage = posterImage;
+	}
+
 	public LocalDateTime getCreateTime()
 	{
 		return createTime;
 	}
+
 	public void setCreateTime(LocalDateTime createTime)
 	{
 		this.createTime = createTime;
 	}
+
 	public LocalDateTime getLastUpdateTime()
 	{
 		return lastUpdateTime;
 	}
+
 	public void setLastUpdateTime(LocalDateTime lastUpdateTime)
 	{
 		this.lastUpdateTime = lastUpdateTime;

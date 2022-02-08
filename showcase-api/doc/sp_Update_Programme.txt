@@ -1,0 +1,10 @@
+create procedure Update_Programme
+	@programmeCode int,
+	@title varchar(50)
+as
+begin
+	if exists (select * from programme where code = @programmeCode)
+	begin
+		update programme set title=@title, last_update_time=CURRENT_TIMESTAMP where code = @programmeCode
+	end
+end

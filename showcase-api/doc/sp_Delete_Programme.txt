@@ -1,0 +1,9 @@
+create procedure Delete_Programme
+	@programmeCode int
+as
+begin
+	if exists (select * from programme where code = @programmeCode)
+	begin
+		delete from programme where code = @programmeCode
+	end
+end
