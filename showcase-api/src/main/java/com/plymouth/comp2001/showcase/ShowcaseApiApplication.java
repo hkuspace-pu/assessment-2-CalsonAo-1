@@ -6,12 +6,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ShowcaseApiApplication 
+public class ShowcaseApiApplication
 {
 	private static final Logger logger = LoggerFactory.getLogger(ShowcaseApiApplication.class);
 	
-    public static void main( String[] args )
-    {
+	public static void main(String[] args)
+	{
 		SpringApplication.run(ShowcaseApiApplication.class, args);
-    }
+	}
 }

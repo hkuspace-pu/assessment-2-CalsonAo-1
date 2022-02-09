@@ -2,6 +2,8 @@ package com.plymouth.comp2001.showcase.controller;
 
 import java.util.List;
 import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,8 @@ import com.plymouth.comp2001.showcase.repo.ProjectRepository;
 @RestController
 public class ProjectController
 {
+	private static final Logger logger = LoggerFactory.getLogger(ProjectController.class);
+	
 	@Value("${server.port}")
 	private int port;
 	
@@ -35,7 +39,7 @@ public class ProjectController
 		return list;
 	}
 	
-	@GetMapping("/add")
+	@GetMapping("/project/add")
 	public Project add()
 	{
 		Project project = new Project();
@@ -46,7 +50,7 @@ public class ProjectController
 		return project;
 	}
 	
-	@PostMapping("/create")
+	@PostMapping("/project/create")
 	public Project createProject(@RequestBody Project project) {
 		project = projectRepository.save(project);
 		return project;
