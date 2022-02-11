@@ -19,7 +19,7 @@ public class Programme
 //	@GeneratedValue(strategy = GenerationType.AUTO)		// all table use a single ID generator
 	private Integer code;
 	
-	@Column(name="create_time", nullable=false)
+	@Column(name="title", nullable=false)
 	private String title;
 	
 	
