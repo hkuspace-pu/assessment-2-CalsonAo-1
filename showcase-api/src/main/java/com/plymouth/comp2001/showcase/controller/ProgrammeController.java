@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.plymouth.comp2001.showcase.model.Programme;
-import com.plymouth.comp2001.showcase.repo.ProgrammeRepository;
+import com.plymouth.comp2001.showcase.model.ProgrammeRepository;
 
 @RestController
 public class ProgrammeController
@@ -33,15 +33,14 @@ public class ProgrammeController
 	@GetMapping("/programmes")
 	public List<Programme> list()
 	{
-		List<Programme> programList = repository.findAll();
-		
-		logger.info("retrieve all programmes, total: {}", programList.size());
-		for (int i = 0; i < programList.size(); i++)
+		List<Programme> list = repository.findAll();
+		logger.info("retrieve all programmes, total: {}", list.size());
+		for (int i = 0; i < list.size(); i++)
 		{
-			Programme programme = programList.get(i);
+			Programme programme = list.get(i);
 			logger.info("p[{}]: {}", i, programme.toString());
 		}
-		return programList;
+		return list;
 	}
 	
 	@PutMapping("/programmes/{code}")

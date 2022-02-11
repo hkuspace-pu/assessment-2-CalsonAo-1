@@ -22,17 +22,12 @@ public class Programme
 	@Column(name="title", nullable=false)
 	private String title;
 	
-	
 	@Column(name="create_time", nullable=false, updatable=false)
 	private LocalDateTime createTime;
 	
-	@Column(name = "last_update_time")
+	@Column(name="last_update_time")
 	private LocalDateTime lastUpdateTime;
 	
-	public Programme()
-	{
-	}
-
 	@Override
 	public String toString()
 	{

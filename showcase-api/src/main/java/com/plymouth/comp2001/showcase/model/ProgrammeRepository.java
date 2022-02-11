@@ -1,4 +1,4 @@
-package com.plymouth.comp2001.showcase.repo;
+package com.plymouth.comp2001.showcase.model;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -6,16 +6,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
-import com.plymouth.comp2001.showcase.model.Programme;
 
 @Repository
 public class ProgrammeRepository
 {
-	private static final Logger logger = LoggerFactory.getLogger(ProgrammeRepository.class);
-	
 	@PersistenceContext
 	private EntityManager em;
 	
