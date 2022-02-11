@@ -6,9 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 @Entity
 @Table(name = "project")
@@ -18,7 +18,7 @@ public class Project
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer projectId;
 	
-	@Column(nullable = false, updatable = false)
+	@Column(nullable = false)
 	private String title;
 	
 	@Column
@@ -31,34 +31,17 @@ public class Project
 	
 	private String posterImage;
 	
-	
-	@Column(nullable = false, updatable = false)
+	@Column(name="create_time", nullable=false, updatable=false)
 	private LocalDateTime createTime;
 	
-	@Column(nullable = true, updatable = true)
+	@Column(name="last_update_time")
 	private LocalDateTime lastUpdateTime;
 	
-	public Project()
+	@Override
+	public String toString()
 	{
-		
-	}
-	
-	public Project(Integer projectId, String title)
-	{
-		this.projectId = projectId;
-		this.title = title;
-	}
-	
-	@PrePersist
-	protected void onCreate()
-	{
-		this.createTime = LocalDateTime.now();
-	}
-	
-	@PreUpdate
-	protected void onUpdate()
-	{
-		lastUpdateTime = LocalDateTime.now();
+		String body = ReflectionToStringBuilder.toString(this, ToStringStyle.NO_CLASS_NAME_STYLE);
+		return body;
 	}
 
 	public Integer getProjectId()

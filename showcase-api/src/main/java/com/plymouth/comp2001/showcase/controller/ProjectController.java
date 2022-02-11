@@ -1,12 +1,9 @@
 package com.plymouth.comp2001.showcase.controller;
 
 import java.util.List;
-import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.plymouth.comp2001.showcase.model.Project;
-import com.plymouth.comp2001.showcase.repo.ProjectRepository;
+import com.plymouth.comp2001.showcase.model.ProjectRepository;
 
 @RestController
 public class ProjectController
@@ -23,54 +20,49 @@ public class ProjectController
 	private static final Logger logger = LoggerFactory.getLogger(ProjectController.class);
 	
 	@Autowired
-	private ProjectRepository projectRepository;
+	private ProjectRepository repository;
 	
-	@GetMapping("/project/list")
+	@PostMapping("/projects")
+	public int add(@RequestBody Project project)
+	{
+		logger.info("create project: {}", project.toString());
+		int result = repository.insert(project);
+		return result;
+	}
+	
+	@GetMapping("/projects")
 	public List<Project> list()
 	{
-		List<Project> list = projectRepository.findAll();
+		List<Project> list = repository.findAll();
+		logger.info("retrieve all projects, total: {}", list.size());
+		for (int i = 0; i < list.size(); i++)
+		{
+			Project project = list.get(i);
+			logger.info("p[{}]: {}", i, project.toString());
+		}
 		return list;
 	}
+
+//	@GetMapping("/projects/{id}")
+//	public Project getProjectById(@PathVariable(value = "id") Long projectId) {
+//		Optional<Project> optional = projectRepository.findById(projectId);
+//		Project project = optional.orElse(null);
+//		return project;
+//	}
 	
-	@GetMapping("/project/add")
-	public Project add()
+	@PutMapping("/projects/{projectId}")
+	public int update(@PathVariable(value = "projectId") Integer projectId, @RequestBody Project project) {
+
+		logger.info("update project {} to {}", projectId, project.toString());
+		int result = repository.update(projectId, project);
+		return result;
+	}
+
+	@DeleteMapping("/projects/{projectId}")
+	public int delete(@PathVariable Integer projectId)
 	{
-		Project project = new Project();
-//		project.setTitle("Biohazard 3");
-//		project.setTitle("Dino Crisis 2");
-		project.setTitle("Devil May Cry 4");
-		project = projectRepository.save(project);
-		return project;
-	}
-	
-	@PostMapping("/project/create")
-	public Project createProject(@RequestBody Project project) {
-		project = projectRepository.save(project);
-		return project;
-	}
-	
-	@GetMapping("/project/{id}")
-	public Project getProjectById(@PathVariable(value = "id") Long projectId) {
-		Optional<Project> optional = projectRepository.findById(projectId);
-		Project project = optional.orElse(null);
-		return project;
-	}
-	
-	@PutMapping("/project/{id}")
-	public Project updateProject(@PathVariable(value = "id") Long projectId, @RequestBody Project project) {
-
-		Optional<Project> optional = projectRepository.findById(projectId);
-		Project dbProject = optional.orElse(null);
-		dbProject.setTitle(project.getTitle());
-		dbProject = projectRepository.save(dbProject);
-		return dbProject;
-	}
-
-	@DeleteMapping("/project/{id}")
-	public ResponseEntity<?> deleteProject(@PathVariable(value = "id") Long projectId) {
-		Optional<Project> optional = projectRepository.findById(projectId);
-		Project dbProject = optional.orElse(null);
-		projectRepository.delete(dbProject);
-		return ResponseEntity.ok().build();
+		logger.info("delete programme {}", projectId);
+		int result = repository.delete(projectId);
+		return result;
 	}
 }
