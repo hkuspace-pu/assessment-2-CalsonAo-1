@@ -14,29 +14,23 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 @Table(name = "programme")
 public class Programme
 {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id													// the primary key column
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	// each table has its own ID generator
+//	@GeneratedValue(strategy = GenerationType.AUTO)		// all table use a single ID generator
 	private Integer code;
 	
-	@Column(nullable = false, updatable = true)
+	@Column(name="create_time", nullable=false)
 	private String title;
 	
 	
-	@Column(nullable = false, updatable = false)
+	@Column(name="create_time", nullable=false, updatable=false)
 	private LocalDateTime createTime;
 	
-	@Column(nullable = true, updatable = true)
+	@Column(name = "last_update_time")
 	private LocalDateTime lastUpdateTime;
 	
 	public Programme()
 	{
-	}
-	
-	public Programme(Integer code, String title)
-	{
-		this.code = code;
-		this.title = title;
 	}
 
 	@Override

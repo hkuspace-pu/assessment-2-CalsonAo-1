@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.plymouth.comp2001.showcase.config.AppYml;
 import com.plymouth.comp2001.showcase.model.Project;
 import com.plymouth.comp2001.showcase.repo.ProjectRepository;
 
@@ -23,16 +22,10 @@ public class ProjectController
 {
 	private static final Logger logger = LoggerFactory.getLogger(ProjectController.class);
 	
-	@Value("${server.port}")
-	private int port;
-	
-	@Autowired
-	private AppYml ymlConfig;
-	
 	@Autowired
 	private ProjectRepository projectRepository;
 	
-	@GetMapping("/list")
+	@GetMapping("/project/list")
 	public List<Project> list()
 	{
 		List<Project> list = projectRepository.findAll();
