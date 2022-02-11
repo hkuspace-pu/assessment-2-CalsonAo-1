@@ -10,7 +10,7 @@ spring:
       test-on-borrow: true
       validation-query: SELECT 1
   jpa:
-    show-sql: false
+    show-sql: true
     hibernate:
       ddl-auto: create
     properties: 
@@ -24,12 +24,12 @@ spring:
           batch_versioned_data: true
 
 server:
-  port: 80
+  port: 8080
   servlet:
-    context-path: /
+    context-path: /api
   tomcat:
     uri-encoding: UTF-8
-    max-threads: 10
+    max-threads: 30
 
 logging:
   config: classpath:logback.xml
