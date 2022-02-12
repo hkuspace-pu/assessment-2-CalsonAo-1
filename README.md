@@ -4,6 +4,19 @@ assessment-2-CalsonAo-1 created by GitHub Classroom
 ###############################
 # part 1: showcase-api
 ###############################
+
+---------------------------
+third-party tool / library
+---------------------------
+- spring boot framework (https://spring.io/projects/spring-boot)
+- apache common (https://commons.apache.org/)
+- Spring Initializr (https://start.spring.io/)
+- Microsoft JDBC Driver for SQL Server (https://docs.microsoft.com/en-us/sql/connect/jdbc/download-microsoft-jdbc-driver-for-sql-server?view=sql-server-ver15)
+
+
+---------------------------
+Preparation
+---------------------------
 1. create tables in database
 2. create store procedures
 3. create trigger
@@ -22,7 +35,7 @@ assessment-2-CalsonAo-1 created by GitHub Classroom
 
 ---------------------------
 Example API calls
-
+---------------------------
 1. get all programmes
 HTTP Method: GET
 URL: http://localhost:8080/api/programmes
@@ -42,25 +55,45 @@ HTTP Method: DELETE
 URL: http://localhost:8080/api/programmes/1
 
 ---------------------------
-Database Audit Table for updating a programme
-select * from programme_registration;
+Database Audit Table
+---------------------------
+table: programme_registration
+description: audit for programme update
+SQL: select * from programme_registration;
 
 ---------------------------
-Database VIEW for checking students' registered programmes
-select * from v_student_programme;
+Database VIEW
+---------------------------
+view: v_student_programme
+description: for checking students' registered programmes
+SQL: select * from v_student_programme;
 
 ---------------------------------------
 Store Procedures
+---------------------------------------
 - sp_Create_Programme.txt
 - sp_Delete_Programme.txt
 - sp_Update_Programme.txt
 
+---------------------------------------
 Trigger
+---------------------------------------
 - tg_Update_Programme.txt
 
+---------------------------------------
 VIEW
+---------------------------------------
 - view_student_programme.txt
 
 ###############################
-# part 2: XXX
+# part 2: json-ld-api with web
 ###############################
+
+---------------------------
+third-party tool / library
+---------------------------
+- spring boot framework (https://spring.io/projects/spring-boot)
+- apache common (https://commons.apache.org/)
+- Spring Initializr (https://start.spring.io/)
+- geojson-jackson (https://github.com/opendatalab-de/geojson-jackson)
+- jackson-jsonld (https://github.com/io-informatics/jackson-jsonld)
