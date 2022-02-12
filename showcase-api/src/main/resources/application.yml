@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:sqlserver://battlecat.ddns.net:1433;DatabaseName=showcase
-    username: amy
-    password: amy
+    url: jdbc:sqlserver://socem1.uopnet.plymouth.ac.uk:1433;DatabaseName=COMP2001HK_WAo
+    username: WAo
+    password: RkpH901+
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     tomcat:
       max-wait: 15000
