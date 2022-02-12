@@ -17,6 +17,7 @@ assessment-2-CalsonAo-1 created by GitHub Classroom
 6. edit API server configuration in application.yml
 	- port: 8080
 	- context-path: /api
+7. insert sample data to database (doc/sp_call.txt)
 8. start API
 
 ---------------------------
@@ -47,6 +48,18 @@ select * from programme_registration;
 ---------------------------
 Database VIEW for checking students' registered programmes
 select * from v_student_programme;
+
+---------------------------------------
+Store Procedures
+- sp_Create_Programme.txt
+- sp_Delete_Programme.txt
+- sp_Update_Programme.txt
+
+Trigger
+- tg_Update_Programme.txt
+
+VIEW
+- view_student_programme.txt
 
 ###############################
 # part 2: XXX
