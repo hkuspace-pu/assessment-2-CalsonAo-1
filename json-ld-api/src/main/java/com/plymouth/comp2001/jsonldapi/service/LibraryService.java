@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
@@ -14,16 +13,11 @@ import org.geojson.FeatureCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.jsonldjava.core.JsonLdOptions;
-import com.github.jsonldjava.core.JsonLdProcessor;
-import com.github.jsonldjava.utils.JsonUtils;
 import com.plymouth.comp2001.jsonldapi.model.LibraryJson;
 import com.plymouth.comp2001.jsonldapi.model.LibraryJsonLd;
 import ioinformarics.oss.jackson.module.jsonld.JsonldModule;
-import ioinformarics.oss.jackson.module.jsonld.JsonldResource;
 
 @Service
 public class LibraryService
