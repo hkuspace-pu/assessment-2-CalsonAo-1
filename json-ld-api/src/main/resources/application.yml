@@ -1,0 +1,10 @@
+server:
+  port: 80
+  servlet:
+    context-path: /jsonldapi
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 30
+
+logging:
+  config: classpath:logback.xml
