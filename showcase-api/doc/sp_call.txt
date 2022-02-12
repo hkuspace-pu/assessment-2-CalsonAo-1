@@ -12,7 +12,24 @@ exec Delete_Programme @programmeCode=1
 insert into programme (title, create_time) values ('Database', CURRENT_TIMESTAMP);
 insert into programme (title, create_time) values ('Networking', CURRENT_TIMESTAMP);
 insert into programme (title, create_time) values ('Java', CURRENT_TIMESTAMP);
+insert into programme (title, create_time) values ('Pure Maths', CURRENT_TIMESTAMP);
+insert into programme (title, create_time) values ('English', CURRENT_TIMESTAMP);
 
-insert into student (student, create_time) values ('Amy Choi', CURRENT_TIMESTAMP);
-insert into student (student, create_time) values ('Ben Ngan', CURRENT_TIMESTAMP);
-insert into student (student, create_time) values ('Carol Lai', CURRENT_TIMESTAMP);
+insert into student (name, create_time) values ('Amy Choi', CURRENT_TIMESTAMP);
+insert into student (name, create_time) values ('Ben Ngan', CURRENT_TIMESTAMP);
+insert into student (name, create_time) values ('Carol Lai', CURRENT_TIMESTAMP);
+
+insert into project (title, year, create_time) values ('3rd Energy Project', 1998, CURRENT_TIMESTAMP);
+insert into project (title, year, create_time) values ('Smart Grid', 2001, CURRENT_TIMESTAMP);
+insert into project (title, year, create_time) values ('Remote Manager', 2005, CURRENT_TIMESTAMP);
+
+insert into programme_registration (programme_code, student_id, register_time) values (5, 1, CURRENT_TIMESTAMP);
+insert into programme_registration (programme_code, student_id, register_time) values (4, 1, CURRENT_TIMESTAMP);
+insert into programme_registration (programme_code, student_id, register_time) values (1, 1, CURRENT_TIMESTAMP);
+insert into programme_registration (programme_code, student_id, register_time) values (3, 1, CURRENT_TIMESTAMP);
+insert into programme_registration (programme_code, student_id, register_time) values (5, 2, CURRENT_TIMESTAMP);
+insert into programme_registration (programme_code, student_id, register_time) values (4, 2, CURRENT_TIMESTAMP);
+insert into programme_registration (programme_code, student_id, register_time) values (2, 2, CURRENT_TIMESTAMP);
+insert into programme_registration (programme_code, student_id, register_time) values (5, 3, CURRENT_TIMESTAMP);
+insert into programme_registration (programme_code, student_id, register_time) values (4, 3, CURRENT_TIMESTAMP);
+insert into programme_registration (programme_code, student_id, register_time) values (2, 3, CURRENT_TIMESTAMP);
