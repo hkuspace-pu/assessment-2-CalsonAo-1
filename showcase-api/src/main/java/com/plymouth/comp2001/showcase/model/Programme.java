@@ -1,11 +1,13 @@
 package com.plymouth.comp2001.showcase.model;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -14,19 +16,22 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 @Table(name = "programme")
 public class Programme
 {
-	@Id													// the primary key column
-	@GeneratedValue(strategy = GenerationType.IDENTITY)	// each table has its own ID generator
+	@Id // the primary key column
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // each table has its own ID generator
 //	@GeneratedValue(strategy = GenerationType.AUTO)		// all table use a single ID generator
 	private Integer code;
 	
-	@Column(name="title", nullable=false)
+	@Column(name = "title", nullable = false)
 	private String title;
 	
-	@Column(name="create_time", nullable=false, updatable=false)
+	@Column(name = "create_time", nullable = false, updatable = false)
 	private LocalDateTime createTime;
 	
-	@Column(name="last_update_time")
+	@Column(name = "last_update_time")
 	private LocalDateTime lastUpdateTime;
+	
+	@OneToMany(mappedBy = "programme")
+	private Set<ProgrammeRegistration> registrations;
 	
 	@Override
 	public String toString()
@@ -54,24 +59,34 @@ public class Programme
 	{
 		this.title = title;
 	}
-
+	
 	public LocalDateTime getCreateTime()
 	{
 		return createTime;
 	}
-
+	
 	public void setCreateTime(LocalDateTime createTime)
 	{
 		this.createTime = createTime;
 	}
-
+	
 	public LocalDateTime getLastUpdateTime()
 	{
 		return lastUpdateTime;
 	}
-
+	
 	public void setLastUpdateTime(LocalDateTime lastUpdateTime)
 	{
 		this.lastUpdateTime = lastUpdateTime;
+	}
+
+	public Set<ProgrammeRegistration> getRegistrations()
+	{
+		return registrations;
+	}
+
+	public void setRegistrations(Set<ProgrammeRegistration> registrations)
+	{
+		this.registrations = registrations;
 	}
 }
