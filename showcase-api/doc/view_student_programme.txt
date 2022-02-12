@@ -1,8 +1,10 @@
-create view v_student_programme as
+--drop view if exists v_student_programme;
+create or alter view v_student_programme as
 	select 
 		t1.student_id,
 		t1.name as student_name,
-		t2.code as programme_code,
-		t2.title as programme_title
+		t3.code as programme_code,
+		t3.title as programme_title
 	from student t1
-		left join programme t2 on t2.student_id = t1.student_id;
+		left join programme_registration t2 on t2.student_id = t1.student_id
+		left join programme t3 on t3.code = t2.programme_code;
