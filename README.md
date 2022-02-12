@@ -97,3 +97,18 @@ third-party tool / library
 - Spring Initializr (https://start.spring.io/)
 - geojson-jackson (https://github.com/opendatalab-de/geojson-jackson)
 - jackson-jsonld (https://github.com/io-informatics/jackson-jsonld)
+- apache freemarker (https://freemarker.apache.org/)
+
+---------------------------
+Preparation
+---------------------------
+1. edit API server configuration in application.yml
+	- port: 80
+	- context-path: /
+2. start API
+
+---------------------------
+Usage
+---------------------------
+machine-readable: http://localhost/library/jsonld
+human readable: http://localhost/library/list
