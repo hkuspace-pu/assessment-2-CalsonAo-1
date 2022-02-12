@@ -20,7 +20,7 @@ public class LibraryJsonLdRestController
 	public String getLibraryJsonLd()
 	{
 		logger.info("retrieving library json-ld...");
-		String jsonLdStr = service.getLibraryJsonLdStr();
+		String jsonLdStr = service.getLibraryJsonLdString();
 		return jsonLdStr;
 	}
 }

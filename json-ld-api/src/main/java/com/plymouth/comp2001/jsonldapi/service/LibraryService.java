@@ -28,15 +28,18 @@ public class LibraryService
 	
 	private List<LibraryJson> libraryJsonList;
 	private List<LibraryJsonLd> libraryJsonLdList;
-	private String libraryJsonLdStr;
+	private ObjectMapper jsonLdObjectMapper;
 	
 	@PostConstruct
 	private void init()
 	{
 		logger.info("initiating LibraryLocationService...");
+		
+		jsonLdObjectMapper = new ObjectMapper();
+		jsonLdObjectMapper.registerModule(new JsonldModule());
+		
 		libraryJsonList = retrieveLibraryJsonList(DATASET_URL);
 		libraryJsonLdList = makeLibraryJsonLdList(libraryJsonList);
-		libraryJsonLdStr = makeLibraryJsonLdString(libraryJsonLdList);
 	}
 	
 	public List<LibraryJson> getLibraryJsonList()
@@ -47,11 +50,6 @@ public class LibraryService
 	public List<LibraryJsonLd> getLibraryJsonLds()
 	{
 		return libraryJsonLdList;
-	}
-
-	public String getLibraryJsonLdStr()
-	{
-		return libraryJsonLdStr;
 	}
 
 	private List<LibraryJson> retrieveLibraryJsonList(String urlStr)
@@ -111,17 +109,17 @@ public class LibraryService
 		return resultList;
 	}
 	
-	private String makeLibraryJsonLdString(List<LibraryJsonLd> jsonLdList)
+	public String getLibraryJsonLdString()
 	{
-		ObjectMapper objectMapper = new ObjectMapper();
-		objectMapper.registerModule(new JsonldModule(() -> objectMapper.createObjectNode()));
+		
+//		objectMapper.registerModule(new JsonldModule(() -> objectMapper.createObjectNode()));
 		
 		String jsonStr = "";
 		try
 		{
-			jsonStr = objectMapper.writeValueAsString(jsonLdList);
+			jsonStr = jsonLdObjectMapper.writeValueAsString(this.libraryJsonLdList);
 //			JsonldResource resrc = JsonldResource.Builder.create().build(jsonLdList);
-//			jsonStr = objectMapper.writer().writeValueAsString(resrc);
+//			jsonStr = jsonLdObjectMapper.writer().writeValueAsString(resrc);
 			logger.info("result: {}", jsonStr);
 		}
 		catch (JsonProcessingException e)

@@ -1,9 +1,13 @@
 package com.plymouth.comp2001.jsonldapi.model;
 
 import ioinformarics.oss.jackson.module.jsonld.annotation.JsonldId;
+import ioinformarics.oss.jackson.module.jsonld.annotation.JsonldNamespace;
 import ioinformarics.oss.jackson.module.jsonld.annotation.JsonldProperty;
+import ioinformarics.oss.jackson.module.jsonld.annotation.JsonldResource;
 import ioinformarics.oss.jackson.module.jsonld.annotation.JsonldType;
 
+@JsonldResource
+@JsonldNamespace(name = "library", uri = "http://schema.org/")
 @JsonldType("https://schema.org/Place")
 public class LibraryJsonLd
 {
