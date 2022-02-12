@@ -1,10 +1,19 @@
-create procedure Update_Programme
+create or alter procedure Update_Programme
 	@programmeCode int,
 	@title varchar(50)
 as
 begin
+	declare @codeStr varchar(20);
+	set @codeStr = CAST(@programmeCode as varchar(20));
+	
 	if exists (select * from programme where code = @programmeCode)
 	begin
+		print 'programme [code=' + @codeStr + '] is updated!';
 		update programme set title=@title, last_update_time=CURRENT_TIMESTAMP where code = @programmeCode
 	end
+	else
+	begin
+		print 'programme [code=' + @codeStr + '] does NOT exist, cannot update.';
+	end
 end
+go

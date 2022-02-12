@@ -1,0 +1,18 @@
+
+exec Create_Programme @title='Python'
+
+exec Update_Programme @programmeCode=1, @title='Java'
+
+exec Delete_Programme @programmeCode=1
+
+
+######################
+# sample data
+######################
+insert into programme (title, create_time) values ('Database', CURRENT_TIMESTAMP);
+insert into programme (title, create_time) values ('Networking', CURRENT_TIMESTAMP);
+insert into programme (title, create_time) values ('Java', CURRENT_TIMESTAMP);
+
+insert into student (student, create_time) values ('Amy Choi', CURRENT_TIMESTAMP);
+insert into student (student, create_time) values ('Ben Ngan', CURRENT_TIMESTAMP);
+insert into student (student, create_time) values ('Carol Lai', CURRENT_TIMESTAMP);

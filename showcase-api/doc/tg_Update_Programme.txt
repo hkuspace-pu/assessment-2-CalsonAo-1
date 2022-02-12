@@ -1,4 +1,4 @@
-create trigger tgUpdateProgramme on programme after update as 
+create or alter trigger tgUpdateProgramme on programme after update as 
 begin
 	set nocount on;
 	insert into audit_programme (
