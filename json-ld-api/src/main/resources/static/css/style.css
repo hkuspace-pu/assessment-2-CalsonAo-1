@@ -1,0 +1,19 @@
+body {
+	font-family: Helvetica, Arial, Sans-Serif;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table th, table td {
+	border: 1px solid;
+	padding: 10px;
+	vertical-align: top;
+}
+
+table th {
+	background-color: #8080ff;
+	color: white;
+	font-weight: bold;
+}
