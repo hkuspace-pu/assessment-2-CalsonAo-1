@@ -85,9 +85,9 @@ VIEW
 ---------------------------------------
 - view_student_programme.txt
 
-###############################
-# part 2: json-ld-api with web
-###############################
+###################################
+# part 2: json-ld-api with webpages
+###################################
 
 ---------------------------
 third-party tool / library
@@ -104,11 +104,12 @@ Preparation
 ---------------------------
 1. edit API server configuration in application.yml
 	- port: 80
-	- context-path: /
+	- context-path: /library
 2. start API
 
 ---------------------------
 Usage
 ---------------------------
 machine-readable: http://localhost/library/jsonld
-human readable: http://localhost/library/list
+human readable: http://localhost/library/
+
