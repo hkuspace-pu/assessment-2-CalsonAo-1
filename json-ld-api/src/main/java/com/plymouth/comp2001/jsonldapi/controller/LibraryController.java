@@ -14,7 +14,13 @@ public class LibraryController
 	@Autowired
 	private LibraryService service;
 	
-	@GetMapping("/library/list")
+	@GetMapping("/")
+    public String home(Model model) {
+		model.addAttribute("datasetUrl", service.getDatasetUrl());
+        return "home";
+    }
+	
+	@GetMapping("/list")
     public String listLibrary(Model model) {
 		List<LibraryJson> libraryList = service.getLibraryJsonList();
         model.addAttribute("libraryList", libraryList);
