@@ -16,7 +16,7 @@ public class LibraryJsonLdRestController
 	@Autowired
 	private LibraryService service;
 	
-	@GetMapping(value = "/library/jsonld", produces = { MediaType.APPLICATION_JSON_VALUE })
+	@GetMapping(value = "/jsonld", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public String getLibraryJsonLd()
 	{
 		logger.info("retrieving library json-ld...");

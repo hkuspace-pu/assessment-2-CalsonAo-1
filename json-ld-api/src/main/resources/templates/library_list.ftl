@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<div>
+<div class="center">
 	<table id="library">
 		<tr>
 			<th>#</th>
@@ -45,7 +45,8 @@
 					(${tmpLibrary.latitude}, ${tmpLibrary.longitude})
 				</td>
 				<td>
-					${tmpLibrary.website}
+					<a href="${tmpLibrary.website}" target="_blank">${tmpLibrary.website}</a>
+					
 				</td>
 			</tr>
 		</#list>

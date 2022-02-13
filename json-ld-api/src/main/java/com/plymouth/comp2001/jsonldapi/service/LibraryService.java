@@ -12,6 +12,7 @@ import org.geojson.Feature;
 import org.geojson.FeatureCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,8 +24,10 @@ import ioinformarics.oss.jackson.module.jsonld.JsonldModule;
 public class LibraryService
 {
 	private static final Logger logger = LoggerFactory.getLogger(LibraryService.class);
+//	private static final String DATASET_URL = "https://storage.googleapis.com/thedataplace-plymouth/resources%2F7ca5c131-ba46-4133-ae6a-0dc8eb8a9281%2F040-02_location-of-libraries-2018.geojson";
 	
-	private static final String DATASET_URL = "https://storage.googleapis.com/thedataplace-plymouth/resources%2F7ca5c131-ba46-4133-ae6a-0dc8eb8a9281%2F040-02_location-of-libraries-2018.geojson";
+	@Value("${dataset.url}")
+	private String datasetUrl;
 	
 	private List<LibraryJson> libraryJsonList;
 	private List<LibraryJsonLd> libraryJsonLdList;
@@ -33,12 +36,12 @@ public class LibraryService
 	@PostConstruct
 	private void init()
 	{
-		logger.info("initiating LibraryLocationService...");
+		logger.info("initiating LibraryLocationService from {}", datasetUrl);
 		
 		jsonLdObjectMapper = new ObjectMapper();
 		jsonLdObjectMapper.registerModule(new JsonldModule());
 		
-		libraryJsonList = retrieveLibraryJsonList(DATASET_URL);
+		libraryJsonList = retrieveLibraryJsonList(datasetUrl);
 		libraryJsonLdList = makeLibraryJsonLdList(libraryJsonList);
 	}
 	
@@ -50,6 +53,11 @@ public class LibraryService
 	public List<LibraryJsonLd> getLibraryJsonLds()
 	{
 		return libraryJsonLdList;
+	}
+	
+	public String getDatasetUrl()
+	{
+		return datasetUrl;
 	}
 
 	private List<LibraryJson> retrieveLibraryJsonList(String urlStr)
@@ -95,10 +103,14 @@ public class LibraryService
 			LibraryJson json = jsonList.get(i);
 			LibraryJsonLd jsonLd = new LibraryJsonLd();
 			jsonLd.setFid(json.getFid().toString());
-			jsonLd.setLibraryName(json.getLibraryName());
+			jsonLd.setLibraryName(json.getLibraryName().trim());
 			jsonLd.setAddressLine1(json.getAddressLine1());
-			jsonLd.setAddressLine2(json.getAddressLine2());
-			jsonLd.setAddressLine3(json.getAddressLine3());
+			if (json.getAddressLine2() != null) {
+				jsonLd.setAddressLine2(json.getAddressLine2().trim());
+			}
+			if (json.getAddressLine3() != null) {
+				jsonLd.setAddressLine3(json.getAddressLine3().trim());
+			}
 			jsonLd.setPostcode(json.getPostcode());
 			jsonLd.setLatitude(json.getLatitude());
 			jsonLd.setLongitude(json.getLongitude());

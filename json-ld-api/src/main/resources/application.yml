@@ -9,10 +9,14 @@ spring:
 server:
   port: 80
   servlet:
-    context-path: /
+    context-path: /library
   tomcat:
     uri-encoding: UTF-8
     max-threads: 30
 
 logging:
   config: classpath:logback.xml
+
+dataset:
+  url: https://storage.googleapis.com/thedataplace-plymouth/resources%2F7ca5c131-ba46-4133-ae6a-0dc8eb8a9281%2F040-02_location-of-libraries-2018.geojson
+
