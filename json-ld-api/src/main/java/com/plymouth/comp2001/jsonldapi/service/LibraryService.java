@@ -79,6 +79,7 @@ public class LibraryService
 				Feature feature = featureList.get(i);
 				Map<String, Object> map = feature.getProperties();
 				LibraryJson library = objMapper.convertValue(map, LibraryJson.class);
+				trim(library);
 				resultList.add(library);
 				logger.info("library[{}]: {}", (i+1), library.toString());
 			}
@@ -103,18 +104,30 @@ public class LibraryService
 			LibraryJson json = jsonList.get(i);
 			LibraryJsonLd jsonLd = new LibraryJsonLd();
 			jsonLd.setFid(json.getFid().toString());
-			jsonLd.setLibraryName(json.getLibraryName().trim());
-			jsonLd.setAddressLine1(json.getAddressLine1());
-			if (json.getAddressLine2() != null) {
-				jsonLd.setAddressLine2(json.getAddressLine2().trim());
+			jsonLd.setName(json.getLibraryName());
+			String address = "";
+			if (json.getAddressLine1() != null) {
+				address = address + json.getAddressLine1();
+				if (json.getAddressLine2() != null) {
+					address = address + ", " + json.getAddressLine2();
+				}
+				if (json.getAddressLine3() != null) {
+					address = address + ", " + json.getAddressLine3();
+				}
 			}
-			if (json.getAddressLine3() != null) {
-				jsonLd.setAddressLine3(json.getAddressLine3().trim());
+			jsonLd.setAddress(address);
+			
+			if (json.getPostcode() != null) {
+				jsonLd.setPostalCode(json.getPostcode());
 			}
-			jsonLd.setPostcode(json.getPostcode());
+			
 			jsonLd.setLatitude(json.getLatitude());
 			jsonLd.setLongitude(json.getLongitude());
-			jsonLd.setWebsite(json.getWebsite());
+			
+			if (json.getWebsite() != null) {
+				jsonLd.setSameAs(json.getWebsite());
+			}
+			
 			resultList.add(jsonLd);
 		}
 		
@@ -140,5 +153,37 @@ public class LibraryService
 		}
 		
 		return jsonStr;
+	}
+	
+	private void trim(LibraryJson library)
+	{
+		String name = library.getLibraryName().trim();
+		library.setLibraryName(name);
+		
+		if (library.getAddressLine1() != null)
+		{
+			String addr1 = library.getAddressLine1().trim();
+			library.setAddressLine1(addr1);
+		}
+		if (library.getAddressLine2() != null)
+		{
+			String addr2 = library.getAddressLine2().trim();
+			library.setAddressLine2(addr2);
+		}
+		if (library.getAddressLine3() != null)
+		{
+			String addr3 = library.getAddressLine3().trim();
+			library.setAddressLine3(addr3);
+		}
+		if (library.getPostcode() != null)
+		{
+			String postalCode = library.getPostcode().trim();
+			library.setPostcode(postalCode);
+		}
+		if (library.getWebsite() != null)
+		{
+			String website = library.getWebsite().trim();
+			library.setWebsite(website);
+		}
 	}
 }

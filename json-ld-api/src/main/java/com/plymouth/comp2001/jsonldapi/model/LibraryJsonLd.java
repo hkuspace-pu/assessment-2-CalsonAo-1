@@ -7,27 +7,21 @@ import ioinformarics.oss.jackson.module.jsonld.annotation.JsonldResource;
 import ioinformarics.oss.jackson.module.jsonld.annotation.JsonldType;
 
 @JsonldResource
-@JsonldNamespace(name = "library", uri = "http://schema.org/")
-@JsonldType("https://schema.org/Place")
+@JsonldNamespace(name = "plymouth-library-info", uri = "http://schema.org/")
+@JsonldType("https://schema.org/Library")
 public class LibraryJsonLd
 {
 	@JsonldId
 	private String fid;
 	
 	@JsonldProperty("http://schema.org/name")
-	private String libraryName;
+	private String name;
 	
 	@JsonldProperty("https://schema.org/address")
-	private String addressLine1;
-	
-	@JsonldProperty("https://schema.org/address")
-	private String addressLine2;
-	
-	@JsonldProperty("https://schema.org/address")
-	private String addressLine3;
+	private String address;
 	
 	@JsonldProperty("https://schema.org/postalCode")
-	private String postcode;
+	private String postalCode;
 	
 	@JsonldProperty("https://schema.org/latitude")
 	private Double latitude;
@@ -35,9 +29,10 @@ public class LibraryJsonLd
 	@JsonldProperty("https://schema.org/longitude")
 	private Double longitude;
 	
-	@JsonldProperty("http://schema.org/url")
-	private String website;
-	
+	// URL of a webpage that unambiguously indicates the item's identity (eg: official website)
+	@JsonldProperty("http://schema.org/sameAs")
+	private String sameAs;
+
 	public String getFid()
 	{
 		return fid;
@@ -48,54 +43,34 @@ public class LibraryJsonLd
 		this.fid = fid;
 	}
 
-	public String getLibraryName()
+	public String getName()
 	{
-		return libraryName;
+		return name;
 	}
 
-	public void setLibraryName(String libraryName)
+	public void setName(String name)
 	{
-		this.libraryName = libraryName;
+		this.name = name;
 	}
 
-	public String getAddressLine1()
+	public String getAddress()
 	{
-		return addressLine1;
+		return address;
 	}
 
-	public void setAddressLine1(String addressLine1)
+	public void setAddress(String address)
 	{
-		this.addressLine1 = addressLine1;
+		this.address = address;
 	}
 
-	public String getAddressLine2()
+	public String getPostalCode()
 	{
-		return addressLine2;
+		return postalCode;
 	}
 
-	public void setAddressLine2(String addressLine2)
+	public void setPostalCode(String postalCode)
 	{
-		this.addressLine2 = addressLine2;
-	}
-
-	public String getAddressLine3()
-	{
-		return addressLine3;
-	}
-
-	public void setAddressLine3(String addressLine3)
-	{
-		this.addressLine3 = addressLine3;
-	}
-
-	public String getPostcode()
-	{
-		return postcode;
-	}
-
-	public void setPostcode(String postcode)
-	{
-		this.postcode = postcode;
+		this.postalCode = postalCode;
 	}
 
 	public Double getLatitude()
@@ -118,13 +93,13 @@ public class LibraryJsonLd
 		this.longitude = longitude;
 	}
 
-	public String getWebsite()
+	public String getSameAs()
 	{
-		return website;
+		return sameAs;
 	}
 
-	public void setWebsite(String website)
+	public void setSameAs(String sameAs)
 	{
-		this.website = website;
+		this.sameAs = sameAs;
 	}
 }

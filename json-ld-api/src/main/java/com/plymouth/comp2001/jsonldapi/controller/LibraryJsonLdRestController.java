@@ -19,7 +19,7 @@ public class LibraryJsonLdRestController
 	@GetMapping(value = "/jsonld", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public String getLibraryJsonLd()
 	{
-		logger.info("retrieving library json-ld...");
+		logger.info("get data in json-ld format!");
 		String jsonLdStr = service.getLibraryJsonLdString();
 		return jsonLdStr;
 	}
